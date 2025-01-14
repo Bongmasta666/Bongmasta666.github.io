@@ -1,3 +1,10 @@
+html {
+    background-image: url(./Images/toronto_horizon.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%; 
+}
+
 h1, h2, h3{
     color: gold;
     font-family: "rockwell";
