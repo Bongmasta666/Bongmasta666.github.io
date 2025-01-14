@@ -1,0 +1,52 @@
+
+body {
+    background-color: rgb(16, 108, 230);
+}
+
+table{
+    background-color: lightcoral;
+    width: 140px;
+    margin-top: 8px;
+}
+
+td, tr {
+    border: 1px solid;
+    background-color: white;
+}
+
+.dieButton {
+    padding: 0%;
+}
+
+.scoreBox{
+    text-align: center;
+    background-color: white;
+    width: 32%;
+}
+
+.scoreBtn {
+    background-color: white;
+    border-color: lightcoral;
+    width: 100%;
+}
+
+.scoreBtn:disabled{
+    color: black;
+    border-style: none;
+}
+
+#rlab {
+    font-size: large;
+    font-family: "rockwell";
+    color: whitesmoke;
+    margin-left: 4px;
+}
+
+#rbtn {
+    font-size: large;
+    font-family: "rockwell";
+    background-color: white;
+    border-color: white;
+    margin-top: 16px;
+    margin-left: 132px;
+}

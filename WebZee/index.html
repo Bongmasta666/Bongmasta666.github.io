@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <title>Bong's WebZee</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="score">
+        <table>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_ones" id="upper" onclick="setScore(this)">ONES</button></td>
+            <td class="scoreBox" id="sbox_ones">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_twos" id="upper" onclick="setScore(this)">TWOS</button></td>
+            <td class="scoreBox" id="sbox_twos">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_threes" id="upper" onclick="setScore(this)">THREES</button></td>
+            <td class="scoreBox" id="sbox_threes">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_fours" id="upper" onclick="setScore(this)">FOURS</button></td>
+            <td class="scoreBox" id="sbox_fours">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_fives" id="upper" onclick="setScore(this)">FIVES</button></td>
+            <td class="scoreBox" id="sbox_fives">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_sixes" id="upper" onclick="setScore(this)">SIXES</button></td>
+            <td class="scoreBox" id="sbox_sixes">0</td></tr>
+        </table>
+        <table>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_trips" id="lower" onclick="setScore(this)">TRIPLES</button>
+            </td><td class="scoreBox" id="sbox_trips">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_quads" id="lower" onclick="setScore(this)">QUADS</button></td>
+            <td class="scoreBox" id="sbox_quads">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_fullh" id="lower" onclick="setScore(this)">FULL H</button></td>
+            <td class="scoreBox" id="sbox_fullh">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_small" id="lower" onclick="setScore(this)">SMALL</button></td>
+            <td class="scoreBox" id="sbox_small">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_large" id="lower" onclick="setScore(this)">LARGE</button></td>
+            <td class="scoreBox" id="sbox_large">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_yahtzee" id="lower" onclick="setScore(this)">YAHTZEE</button></td>
+            <td class="scoreBox" id="sbox_yahtzee">0</td></tr>
+        <tr>
+            <td><button class="scoreBtn" name="sbtn_scratch" id="lower" onclick="setScore(this)">SCRATCH</button></td>
+            <td class="scoreBox" id="sbox_scratch">0</td></tr>
+        </table>
+        </div>
+        <br>
+        <div id="dice">
+            <button class="dieButton" id="dbtn_01" onclick="holdDie(this)">
+                <img src="./Dice/die_06_white.png" alt="Die_01" id="dimg_01">
+            </button>
+            <button class="dieButton" id="dbtn_02" onclick="holdDie(this)">
+                <img src="./Dice/die_06_white.png" alt="Die_02" id="dimg_02">
+            </button>
+            <button class="dieButton" id="dbtn_03" onclick="holdDie(this)">
+                <img src="./Dice/die_06_white.png" alt="Die_03" id="dimg_03">
+            </button>
+            <button class="dieButton" id="dbtn_04" onclick="holdDie(this)">
+                <img src="./Dice/die_06_white.png" alt="Die_04" id="dimg_04">
+            </button>
+            <button class="dieButton" id="dbtn_05" onclick="holdDie(this)">
+                <img src="./Dice/die_06_white.png" alt="Die_05" id="dimg_05">
+            </button><br>
+            <label for="rbtn" id="rlab">Rolls Left: 3</label><br>
+            <button id="rbtn" onclick="rollDie()"> Roll Dice </button>
+        </div>
+    </body>
+
+    <script>
+        class Die {
+            constructor(id, ele){
+                this.id = id;
+                this.value = 6;
+                this.canRoll = true;
+                this.element = ele;
+            }
+
+            roll(){
+                this.value = getRandomInt(1, 6);
+                this.element.src = this.getFaceId();
+            }
+
+            toggleHold(){
+                this.canRoll = !this.canRoll;
+                this.element.src = this.getFaceId();
+            }
+
+            getFaceId(){
+                let path = "./Dice/die_0" + this.value + "_";
+                if (this.canRoll) path += "white.png";
+                else path += "red.png";
+                return path;
+            }
+        }
+
+        class DieManager {
+            constructor(){
+                this.current_tally = [0,0,0,0,0,0];
+            }
+
+            tallyDie(group){
+                this.current_tally = [0,0,0,0,0,0];
+                for (x in group){
+                    this.current_tally[group[x].value-1] += 1;
+                }           
+            }
+
+            getFaceTotal(face){
+                return this.current_tally[face-1] * face;
+            }
+
+            getSumTotal(){
+                let total = 0;
+                for (let i = 1; i < 7; i++){
+                    total += this.getFaceTotal(i)
+                }
+                return total;
+            }
+        }
+
+        class Player {
+            constructor(){
+                this.upper_scores = {
+                    "ones": -1,
+                    "twos": -1,
+                    "threes": -1,
+                    "fours": -1,
+                    "fives": -1,
+                    "sixes": -1
+                }
+
+                this.lower_scores = {
+                    "trips": -1,
+                    "quads": -1,
+                    "fullh": -1,
+                    "small": -1,
+                    "large": -1,
+                    "yahtzee": -1,
+                    "scratch": -1
+                }
+            }
+        }
+
+        const DM = new DieManager();
+        const PLYR = new Player();
+        
+        const die01 = new Die("die_01", document.getElementById("dimg_01"));
+        const die02 = new Die("die_02", document.getElementById("dimg_02"));
+        const die03 = new Die("die_03", document.getElementById("dimg_03"));
+        const die04 = new Die("die_04", document.getElementById("dimg_04"));
+        const die05 = new Die("die_05", document.getElementById("dimg_05"));
+        
+        let rolls = 3;
+        function rollDie(){
+            if (rolls > 0){
+                let dieGroup = [die01, die02, die03, die04, die05];
+                for (x in dieGroup){
+                    if (dieGroup[x].canRoll) dieGroup[x].roll();
+                }
+                rolls -= 1;
+                document.getElementById("rlab").innerText = "Rolls Left: " + rolls
+
+                DM.tallyDie(dieGroup);
+                if (PLYR.lower_scores["scratch"] == -1){
+                    document.getElementById("sbox_scratch").innerText = DM.getSumTotal();
+                }
+                
+                let index = 1;
+                for (x in PLYR.upper_scores){
+                    if (PLYR.upper_scores[x] === -1){
+                        let id = "sbox_" + x;
+                        document.getElementById(id).innerHTML = DM.getFaceTotal(index);
+                    }
+                    index += 1;
+                }
+                
+                let high = Math.max(...DM.current_tally);
+                if (high >= 4){
+                    switch (high){
+                        case 5:
+                            if (PLYR.lower_scores["yahtzee"] == -1){
+                                document.getElementById("sbox_yahtzee").innerText = 50;
+                            }
+                            if (PLYR.lower_scores["quads"] == -1){
+                                let value = DM.getFaceTotal(DM.current_tally.indexOf(5)+1);
+                                document.getElementById("sbox_quads").innerText = value;
+                            }
+                            if (PLYR.lower_scores["trips"] == -1){
+                                let value = DM.getFaceTotal(DM.current_tally.indexOf(5)+1);
+                                document.getElementById("sbox_trips").innerText = value;
+                            }
+                            break;
+                        case 4:
+                            if (PLYR.lower_scores["quads"] == -1){
+                                let value = DM.getFaceTotal(DM.current_tally.indexOf(4)+1);
+                                document.getElementById("sbox_quads").innerText = value;
+                            }
+                            if (PLYR.lower_scores["trips"] == -1){
+                                let value = DM.getFaceTotal(DM.current_tally.indexOf(4)+1);
+                                document.getElementById("sbox_trips").innerText = value;
+                            }
+                            break;
+                    }
+                } else if (high == 3){
+                    if (DM.current_tally.includes(2)) {
+                        document.getElementById("sbox_fullh").innerText = 25;
+                    } else {
+                        let value = DM.getFaceTotal(DM.current_tally.indexOf(3)+1);
+                        document.getElementById("sbox_trips").innerText = value;
+                    }
+                } else {
+                    let count = 0;
+                    for (n in DM.current_tally){
+                        if (DM.current_tally[n] > 0){
+                            count += 1;
+                        } else if (DM.current_tally[n] == 0 && count < 4) {
+                            count = 0;
+                        }
+                    }
+                    switch (count) {
+                        case 4:
+                            document.getElementById("sbox_small").innerText = 30;
+                            break;
+                        case 5:
+                            document.getElementById("sbox_small").innerText = 30;
+                            document.getElementById("sbox_large").innerText = 40;
+                            break;
+                    }
+                }
+            }
+        }
+
+        function setScore(element){
+            let name =  String(element.name).replace("sbtn_", "");
+            let value = document.getElementById("sbox_" +name).innerText;
+            document.getElementById("sbox_"+name).style.color = "red"
+            if (element.id === "upper")
+                PLYR.upper_scores[name] = value;
+            else PLYR.lower_scores[name] = value;
+            element.disabled = true;
+            rolls = 3;
+            document.getElementById("rlab").innerText = "Rolls Left: " + rolls
+            resetScoreLabels(PLYR.upper_scores);
+            resetScoreLabels(PLYR.lower_scores);
+        }
+
+        function resetScoreLabels(section){
+            for (e in section){
+                if (section[e] == -1)
+                    document.getElementById("sbox_"+e).innerText = 0;
+            }
+        }
+
+        function holdDie(element){
+            switch (element.id){
+                case "dbtn_01":
+                    die01.toggleHold();
+                    break;
+                case "dbtn_02":
+                    die02.toggleHold();
+                    break;
+                case "dbtn_03":
+                    die03.toggleHold();
+                    break;
+                case "dbtn_04":
+                    die04.toggleHold();
+                    break;
+                case "dbtn_05":
+                    die05.toggleHold();
+                    break;
+            }
+        }
+
+        function getRandomInt(min, max){
+            return Math.floor(Math.random() * (max-min +1)) +1;
+        }
+    </script>
+</html>
