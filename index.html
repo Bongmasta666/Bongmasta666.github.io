@@ -1,24 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Bong's Hub</title>
-        <link rel="stylesheet" href="homepage_style.css">
-    </head>
-    <body>
-        <h1>Bong's Hub</h1>
-        <audio controls src="./Audio/Sea_Shanty_2.ogg"></audio>
-        <h2>INFT-1206 Web Development Projects</h2>
-        <a href="./Labs/Lab_01/Part_01/index.html" target="_blank">Lab 01 - "Marking Up A Letter"</a><br>
-        <a href="./Labs/Lab_02/index.html">Lab 02 - "Cumming Soon"</a><br>
-        <a href="./Labs/Lab_03/index.html">Lab 03 - "Cumming Soon"</a><br>
-        <a href="./Labs/Lab_04/index.html">Lab 04 - "Cumming Soon"</a><br>
-        <a href="./Labs/Lab_05/index.html">Lab 05 - "Cumming Soon"</a><br>
-        <h2>Games</h2>
-        <a href="./WebZee/index.html">Webzee</a><br>
+<head>
+    <title>Bong's Hub</title>
+    <link rel="stylesheet" href="homepage_style.css">
+</head>
+<body>
+    <header style="text-align: center;">
+    <h1>Bong's Hub</h1>
+    </header>
+        
+    <main>
+    <section>
+        <h2>INFT-1206: <br> WebDev Projects</h2>
+        <h3>Assigment 01</h3>
+        <ul>
+            <li><a href="./Labs/Lab_01/Part_01/index.html" target="_blank">"Marking Up A Letter"</a></li>
+            <li><a href="./Labs/Lab_01/Part_02/index.html" target="_blank">"Structuring A Document"</a></li>
+        </ul>
+        <h3>Assigment 02</h3>
+        <ul>
+            <li><a href="./Labs/Lab_02/index.html">"Cumming Soon"</a></li>
+        </ul>
+        <h3>Assigment 03</h3>
+        <ul>
+            <li><a href="./Labs/Lab_03/index.html">"Cumming Soon"</a></li>
+        </ul>
+        <h3>Assigment 01</h3>
+        <ul>
+            <li><a href="./Labs/Lab_04/index.html">"Cumming Soon"</a></li>
+        </ul>
+        <h3>Assigment 01</h3>
+        <ul>
+            <li><a href="./Labs/Lab_05/index.html">"Cumming Soon"</a></li>
+        </ul>
+    </section>
+    <section>
         <h2>Gallery</h2>
         <a href="./Images/ShyJer.jpg" target="_blank">Shy UwU</a><br>
-    </body>
-
+    </section>
+    <section>
+        <h2>Games</h2>
+        <a href="./WebZee/index.html">Webzee</a><br>
+    </section>
+    <section>
+        <h2>Gamer Music</h2>
+        <button class="audioBTN" onclick="changeSong(-1)">
+            <img class="audioIMG" src="./Images/previous.png" alt="audio_prev"></button>
+        <button class="audioBTN" onclick="toggleMusic()">
+            <img class="audioIMG" id="play/pause" src="./Images/forward.png" alt="audio_play"></button>
+        <button class="audioBTN" onclick="changeSong(1)">
+            <img class="audioIMG" src="./Images/next.png" alt="audio_next"></button>
+        <br>
+        <label for="audio_player" id="audio_label">Now Playing:</label>
+        <br>
+    <audio src="./Audio/Sea_Shanty_2.ogg" id="audio_player"></audio>
+    </section>
+    </main>
+</body>
     <script>
+
+        let index = 0;
+        let enabled = false;
+
+        const AUDIO_PLAYER = document.getElementById("audio_player")
+        const AUDIO_LABEL = document.getElementById("audio_label")
+        const AUDIO_PLAY_BTN = document.getElementById("play/pause")
+        const AUDIO_PATH = "./Audio/"
+
+        const SONG_FILES = [
+            "Sea_Shanty_2.ogg",
+            "Arcade_Kid_David_Renda_2020.mp3"
+        ]
+        
+        const SONG_TITLES = [
+            "Runescape - Sea Shanty 2",
+            "David Renda - Arcade Kid"
+        ]
+        
+        AUDIO_LABEL.innerText += "\nRunescape - Sea Shanty 2"
+
+        function toggleMusic() {
+            enabled = !enabled
+            enabled ? AUDIO_PLAYER.play() : AUDIO_PLAYER.pause()
+            enabled ? AUDIO_PLAY_BTN.src = "./Images/pause.png" : AUDIO_PLAY_BTN.src = "./Images/forward.png"
+        }
+
+        function changeSong(direction){
+            index += direction;
+            if (index >= SONG_FILES.length) index = 0;
+            else if (index < 0) index = SONG_FILES.length - 1;
+            AUDIO_LABEL.innerText = "Now Playing:\n" + SONG_TITLES[index]
+            AUDIO_PLAYER.src = AUDIO_PATH + SONG_FILES[index];
+            if (enabled) AUDIO_PLAYER.play();
+        }
+
     </script>
 </html>

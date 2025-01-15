@@ -1,18 +1,43 @@
 html {
-    background-image: url(./Images/toronto_horizon.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%; 
+    background-color: rgb(34, 34, 34);
 }
 
-h1, h2, h3{
+header {
+    background-color: darkslategrey;
+    border-radius: 4px;
+    margin: 12px;
+}
+
+h1, h2, h3, label{
     color: gold;
     font-family: "rockwell";
+    margin-block-end: 8px;
+    margin-block-start: 8px;
     text-shadow: 
-    -2px -2px 0 #000,  
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
+    -1px -1px 0 #000,  
+     2px -1px 0 #000,
+    -1px  2px 0 #000,
      2px  2px 0 #000;
+}
+
+h2, ul {
+    margin-block-start: 8px;  
+}
+
+ul{
+    padding-inline-start: 24px;
+}
+
+aside, section{
+    background-color: purple;
+    margin: 12px;
+    width: fit-content;
+    min-width: 200px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 8px;
 }
 
 a {
@@ -22,4 +47,12 @@ a {
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000;
+}
+
+.audioBTN {
+    background-color: blueviolet;
+}
+
+.audioIMG {
+     width: 24px;
 }
