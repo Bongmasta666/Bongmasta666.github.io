@@ -5,9 +5,9 @@ class DieManager {
         this.rolls_left = 3;
         
         for (let d = 0; d < 5; d++){
-            let id = "dimg_0" + (d+1)
-            let ele = document.getElementById(id)
-            this.dieGroup[id] = new Die(id , ele)
+            let id = "dimg_0" + (d+1);
+            let ele = document.getElementById(id);
+            this.dieGroup[id] = new Die(id , ele);
         }
     }
 
@@ -20,6 +20,7 @@ class DieManager {
                 }      
             }
             this.rolls_left -= 1;
+            document.getElementById("rlab").innerText = "Rolls Left: " + DM.rolls_left
         }
     }
 
@@ -38,28 +39,30 @@ class DieManager {
     getSumTotal(){
         let total = 0;
         for (let i = 1; i < 7; i++){
-            total += this.getFaceTotal(i)
+            total += this.getFaceTotal(i);
         }
         return total;
     }
 
     holdDie(element){
-        switch (element.id){
-            case "dbtn_01":
-                this.dieGroup["dimg_01"].toggleHold();
-                break;
-            case "dbtn_02":
-                this.dieGroup["dimg_02"].toggleHold();
-                break;
-            case "dbtn_03":
-                this.dieGroup["dimg_03"].toggleHold(); 
-                break;
-            case "dbtn_04":
-                this.dieGroup["dimg_04"].toggleHold(); 
-                break;
-            case "dbtn_05":
-                this.dieGroup["dimg_05"].toggleHold(); 
-                break;
+        if (this.rolls_left < 3){
+            switch (element.id){
+                case "dbtn_01":
+                    this.dieGroup["dimg_01"].toggleHold();
+                    break;
+                case "dbtn_02":
+                    this.dieGroup["dimg_02"].toggleHold();
+                    break;
+                case "dbtn_03":
+                    this.dieGroup["dimg_03"].toggleHold(); 
+                    break;
+                case "dbtn_04":
+                    this.dieGroup["dimg_04"].toggleHold(); 
+                    break;
+                case "dbtn_05":
+                    this.dieGroup["dimg_05"].toggleHold(); 
+                    break;
+            }
         }
     }
 
@@ -70,5 +73,7 @@ class DieManager {
                 this.dieGroup[d].canRoll = true;
                 document.getElementById(d).src = this.dieGroup[d].getFaceId();
             }
+        this.rolls_left = 3;
+        document.getElementById("rlab").innerText = "Rolls Left: " + DM.rolls_left
     }
 }

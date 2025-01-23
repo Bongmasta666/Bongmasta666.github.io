@@ -25,14 +25,14 @@ td, tr {
     width: 32%;
 }
 
-.scoreBtn {
+.scoreBtn_U, .scoreBtn_L {
     background-color: rgb(255, 234, 237);
     border-color: lightcoral;
     font-size: 14px;
     width: 100%;
 }
 
-.scoreBtn:disabled{
+.scoreBtn_U:disabled, .scoreBtn_L:disabled{
     color: black;
     background-color: white;
     border-style: none;
