@@ -49,10 +49,12 @@ class ScoreManager {
             for (let n in DM.current_tally){
                 if (DM.current_tally[n] > 0){
                     count += 1;
-                } else if (DM.current_tally[n] === 0 && count < 4) {
-                    count = 0;
-                } else if (count === 4) count -= 1;
+                } else if (DM.current_tally[n] === 0 ) {
+                    if (count < 4) count = 0;
+                    else if (count === 4 && n != 5) count -= 1;
+                }
             }
+            console.log(count)
             switch (count) {
                 case 4:
                     document.getElementById("sbox_small").innerText = 30;
