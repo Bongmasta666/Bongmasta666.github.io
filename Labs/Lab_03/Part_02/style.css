@@ -1,0 +1,16 @@
+html {
+    font-family: sans-serif;
+}
+
+div{
+    color: chartreuse;
+    font-size: 18px;
+    background-color: darkmagenta;
+    border-radius: 8px;
+    border: 1px solid rgb(102, 5, 102);
+    width: fit-content;
+    height: fit-content;
+    padding: 200px;
+    text-shadow: 2px 3px 1px black;
+    text
+}
