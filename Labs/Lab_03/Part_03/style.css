@@ -46,6 +46,11 @@
 
   html{
     font-size: 10px;
+    font-family: 'ComicSans', sans-serif;
+  }
+
+  header, footer{
+    background-color: rgba(202, 76, 76, 0.205);
   }
 
   body{
@@ -55,7 +60,8 @@
   }
 
   h1 {
-    font-size: 280%;        
+    font-family: freestyle script, sans-serif;
+    font-size: 320%;        
     text-align: center;
     letter-spacing: 2px;
   }
@@ -104,9 +110,19 @@
     color: black;
   }
 
+  aside li{
+    line-height: 200%;
+  }
   nav li{
+    color: chartreuse;
     border: 2px solid #a66;
-    padding: 10px;
+    padding-left: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 16px;
     list-style-type: none;
     text-align: center;
+    font-size: 130%;
+    margin-bottom: 10px;
+    background-color: rgba(202, 76, 76, 0.205);
   }
