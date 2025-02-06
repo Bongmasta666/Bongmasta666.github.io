@@ -43,3 +43,70 @@
   }
   
   /* WRITE YOUR CODE BELOW HERE */
+
+  html{
+    font-size: 10px;
+  }
+
+  body{
+    line-height: 12px;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 280%;        
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: 200%;
+  }
+
+  p, ol, ul{
+    font-size: 120%;
+    line-height: 16px;
+  }
+
+  p:nth-of-type(1), p:nth-of-type(3){
+    text-indent: 20px;
+  }
+
+  a {
+    text-decoration: underline; 
+  }
+
+  a[href^="http"]::after {
+    content: "";
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.25em;
+  
+    background-size: 100%;
+    background-image: url("ex_link.png");
+  }
+
+  a:hover, a:focus {
+    color: #a66;
+    text-decoration: none;
+    outline: none;
+  }
+
+  a:visited {
+    color: goldenrod;
+  }
+
+  a:active{
+    font-style: oblique;
+    background-color: lightcoral;
+    color: black;
+  }
+
+  nav li{
+    border: 2px solid #a66;
+    padding: 10px;
+    list-style-type: none;
+    text-align: center;
+  }
