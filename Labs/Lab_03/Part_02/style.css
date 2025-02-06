@@ -1,16 +1,26 @@
 html {
-    font-family: sans-serif;
+    font-family: ravie;
 }
 
 div{
     color: chartreuse;
     font-size: 18px;
-    background-color: darkmagenta;
-    border-radius: 8px;
+    background-image: linear-gradient(
+        to bottom right, 
+        rgb(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.2) 30%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    background-color: slateblue;
+    border-radius: 30px;
     border: 1px solid rgb(102, 5, 102);
     width: fit-content;
     height: fit-content;
-    padding: 200px;
-    text-shadow: 2px 3px 1px black;
-    text
+    padding: 180px;
+    text-shadow:
+        2px 3px 1px black;
+    box-shadow: 
+        3px 3px 2px rgb(0, 0, 0), 
+        3px 3px inset rgba(255, 255, 255, 0.333),
+        -3px -3px inset rgba(0, 0, 0, 0.333);
 }
