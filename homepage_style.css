@@ -1,5 +1,9 @@
 html {
-    background-color: rgb(34, 34, 34);
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(320deg, #eb92be, #ffde21, #63c9b4);
 }
 
 header {
