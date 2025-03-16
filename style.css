@@ -7,8 +7,10 @@ body {
 }
 
 header {
-    background-color: darkslategrey;
+    background: rgba(60, 40, 120, 0.6);
     border-radius: 4px;
+    text-align: center;
+    padding: 4px;
     margin: 12px;
 }
 
@@ -33,7 +35,7 @@ ul{
 }
 
 aside, section{
-    background-color: purple;
+    background-color:rgba(60, 40, 120, 0.6);
     margin: 12px;
     width: fit-content;
     min-width: 200px;
