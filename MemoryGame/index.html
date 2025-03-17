@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Memory Game</title>
+</head>
+<body>
+    <div class="rootContainer">
+        <div class="displayCon">
+            <label class ="displayL" id="stageL">LVL: 00</label>
+            <label class ="displayL" id="counterL">Current: 0/0</label>
+            <label class ="displayL" id="scoreL">PTS: 00</label>
+        </div>
+        <div class="memBtnCon">
+            <button class="memBtn" id="GREEN" onclick="onPlayerClick(this)" style="background: lime;"></button>
+            <button class="memBtn" id="BLUE" onclick="onPlayerClick(this)" style="background: dodgerblue;"></button>
+            <button class="memBtn" id="RED" onclick="onPlayerClick(this)" style="background: tomato;"></button>
+            <button class="memBtn" id="YELLOW" onclick="onPlayerClick(this)" style="background: yellow;"></button>
+        </div>
+        <div class="controlsCon">
+            <button class="gameBtn" id="start" onclick="startGame()">Start</button>
+        </div>
+    </div>
+</body>
+<script src="game.js"> </script>
+</html>
