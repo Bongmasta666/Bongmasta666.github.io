@@ -1,3 +1,5 @@
+
+const clickSound = document.getElementById("sound")
 const startBtn = document.getElementById("start");
 const lvlLabel = document.getElementById("stageL");
 const ptsLabel = document.getElementById("scoreL");
@@ -89,6 +91,7 @@ function setButtonStates(state){
 
 async function clickButton(button){
     let id = button.id;
+    clickSound.play();
     button.style.background = colorEnum[id].colorDown;
     await delay(300);
     button.style.background = colorEnum[id].colorUp;
