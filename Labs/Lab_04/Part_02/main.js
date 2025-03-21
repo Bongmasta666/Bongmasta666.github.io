@@ -38,10 +38,10 @@ function darken(button){
     if (className == "dark") {
         button.setAttribute('class', 'light')
         button.textContent = "Lighten"
-        overlay.style.backgroundColor =  "rgb(0 0 0 / 50%)";
+        overlay.style.background =  "rgb(0 0 0 / 50%)";
     } else {
         button.setAttribute('class', 'dark')
         button.textContent = "Darken"
-        overlay.style.backgroundColor =  "rgb(0 0 0 / 0%)";
+        overlay.style.background =  "rgb(0 0 0 / 0%)";
     }
 }
