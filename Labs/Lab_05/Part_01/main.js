@@ -1,4 +1,7 @@
-// functionality for showing/hiding the comments section
+// Name: Michael Millar
+// File: main.js
+// Date: 09 April 2025
+// Small Script For Handling Comments.
 
 const showHideBtn = document.querySelector('.show-hide');
 const commentWrapper = document.querySelector('.comment-wrapper');
